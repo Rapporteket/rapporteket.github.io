@@ -1,4 +1,5 @@
 ---
+layout: page
 title: "Rapporteket as container application"
 ---
 

@@ -1,4 +1,5 @@
 ---
+layout: page
 title: "Rapporteket: a Short Introduction"
 ---
 

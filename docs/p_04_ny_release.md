@@ -1,4 +1,5 @@
 ---
+layout: page
 title: "Hvordan publisere ny versjon av en Rapporteket-applikasjon"
 ---
 

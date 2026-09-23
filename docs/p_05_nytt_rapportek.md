@@ -1,4 +1,5 @@
 ---
+layout: page
 title: "Hvordan lage en ny Rapporteket-applikasjon"
 ---
 

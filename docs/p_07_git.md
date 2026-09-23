@@ -1,4 +1,5 @@
 ---
+layout: page
 title: "Hvordan jobber vi med Git/Github"
 ---
 
