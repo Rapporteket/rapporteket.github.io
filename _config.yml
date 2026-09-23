@@ -1,0 +1,26 @@
+title: Informasjonsside om Rapporteket
+email: rapporteket@skde.no
+description: >-
+  *Rapporteket* er en analyse- og rapporteringstjenste som benyttes av medisinske kvalitetsregistre.
+  Medisinske kvalitetsregistre har som formål å overvåke kvalitet og bidra til kvalitetsforbedring i helsetjenesten.
+theme: just-the-docs
+
+url: ""
+
+aux_links:
+  Repository: https://github.com/Rapporteket
+
+# Define Jekyll collections
+collections:
+  # Define a collection named "docs", its documents reside in the "_docs" directory
+  docs:
+    permalink: "/:collection/:path/"
+    output: true
+
+just_the_docs:
+  # Define which collections are used in just-the-docs
+  collections:
+    # Reference the "docs" collection
+    docs:
+      # Give the collection a name
+      name: Documentation
