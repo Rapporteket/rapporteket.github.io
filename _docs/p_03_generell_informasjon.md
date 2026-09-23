@@ -1,6 +1,7 @@
 ---
 layout: page
 title: "Rapporteket, generell informasjon"
+nav_order: 3
 ---
 
 # RAPPORTEKET

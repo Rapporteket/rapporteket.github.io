@@ -1,6 +1,7 @@
 ---
 layout: page
 title: "Hvordan publisere ny versjon av en Rapporteket-applikasjon"
+nav_order: 4
 ---
 
 1. Lag en ny versjon på github.

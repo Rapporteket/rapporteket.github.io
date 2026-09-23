@@ -1,6 +1,7 @@
 ---
 layout: page
 title: "Rapporteket as container application"
+nav_order: 20
 ---
 
 ## Short introduction
