@@ -4,6 +4,7 @@ description: >-
   *Rapporteket* er en analyse- og rapporteringstjenste som benyttes av medisinske kvalitetsregistre.
   Medisinske kvalitetsregistre har som formål å overvåke kvalitet og bidra til kvalitetsforbedring i helsetjenesten.
 theme: just-the-docs
+color_scheme: dark
 
 url: ""
 
