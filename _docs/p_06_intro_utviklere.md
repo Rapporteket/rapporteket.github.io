@@ -2,6 +2,7 @@
 layout: page
 title: "For utviklere av Rapporteket"
 nav_order: 6
+permalink: /utvikling
 ---
 
 Rapporteket er en Shiny-app utviklet i R.

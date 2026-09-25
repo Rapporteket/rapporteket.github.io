@@ -2,6 +2,7 @@
 layout: page
 title: "Rapporteket: a Short Introduction"
 nav_order: 2
+permalink: /introduction
 ---
 
 *Rapporteket* is an analysis and reporting service used by Norwegian medical quality registries.

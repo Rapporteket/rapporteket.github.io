@@ -2,6 +2,7 @@
 layout: page
 title: "Rapporteket as container application"
 nav_order: 20
+permalink: /docker
 ---
 
 ## Short introduction

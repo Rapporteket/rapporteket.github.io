@@ -2,6 +2,7 @@
 layout: page
 title: "Hvordan lage en ny Rapporteket-applikasjon"
 nav_order: 5
+permalink: /nytt
 ---
 
 Beskrivelsen under er ikke nødvendigvis utfyllende og forutsetter kjennskap til R og bruk av git og GitHub.

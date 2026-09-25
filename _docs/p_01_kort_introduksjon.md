@@ -2,6 +2,7 @@
 layout: page
 title: "Kort om Rapporteket"
 nav_order: 1
+permalink: /intro
 ---
 
 *Rapporteket* er en analyse- og rapporteringstjenste som benyttes av medisinske kvalitetsregistre.

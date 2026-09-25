@@ -2,6 +2,7 @@
 layout: page
 title: "Hvordan jobber vi med Git/Github"
 nav_order: 7
+permalink: /git
 ---
 
 Mer generell informasjon om hvordan man jobber med Git og Github finnes ikke her.
