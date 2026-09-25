@@ -9,7 +9,9 @@ color_scheme: dark
 url: ""
 
 aux_links:
-  Repository: https://github.com/Rapporteket
+  "Rapporteket på GitHub": https://github.com/Rapporteket
+
+aux_links_new_tab: true
 
 # Define Jekyll collections
 collections:
