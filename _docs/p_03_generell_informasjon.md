@@ -5,8 +5,6 @@ nav_order: 3
 permalink: /om
 ---
 
-# RAPPORTEKET
-
 Rapporteket er en elektronisk resultattjeneste som er tilgjengelig for medisinske kvalitetsregistre. For mer informasjon om Rapporteket, se [kvalitetsregistre.no](https://www.kvalitetsregistre.no/formidling/rapporteket)
 
 ## Innhold
