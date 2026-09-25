@@ -29,3 +29,9 @@ just_the_docs:
     docs:
       # Give the collection a name
       name: Documentation
+
+exclude:
+  - dev
+  - renovate.json
+  - README.md
+  - LICENSE
