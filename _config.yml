@@ -6,6 +6,8 @@ description: >-
 theme: just-the-docs
 color_scheme: dark
 
+favicon_ico: "/assets/logo/favicon.ico"
+
 url: ""
 
 aux_links:
