@@ -8,11 +8,12 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/Oslo
-      - PASSWORD=password
+      - PASSWORD=${CODE_SERVER_PASSWORD:?Set CODE_SERVER_PASSWORD}
     volumes:
       - ~/.ssh:/config/.ssh
       - ~/.gitconfig:/config/.gitconfig
       - ../.:/config/rapporteket.github.io
     ports:
-      - "8443:8443" # code-server web UI
+      - "127.0.0.1:8443:8443" # code-server web UI
+      - "127.0.0.1:4000:4000" # Direct port mapping for Jekyll
       - "4000:4000" # Direct port mapping for Jekyll
