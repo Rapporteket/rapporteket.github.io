@@ -3,7 +3,7 @@ Oppdatert informasjon om Rapporteket
 
 ## Lokal testing av sidene med docker
 
-- Kjør opp code-server med docker-compose (`docker compose up`)
+- Kjør opp code-server med docker-compose fra `dev/`-mappen (`cd dev && docker compose up`)
 - Åpne mappen *rapporteket.github.io* inne i code-server
 - Åpne terminal i code-server
 - Bygg (`bundle install`)
