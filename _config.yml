@@ -15,7 +15,6 @@ aux_links:
 
 aux_links_new_tab: true
 
-# Define Jekyll collections
 collections:
   # Define a collection named "docs", its documents reside in the "_docs" directory
   docs:
@@ -23,12 +22,9 @@ collections:
     output: true
 
 just_the_docs:
-  # Define which collections are used in just-the-docs
   collections:
-    # Reference the "docs" collection
     docs:
-      # Give the collection a name
-      name: Documentation
+      name: Dokumentasjon
 
 exclude:
   - dev
