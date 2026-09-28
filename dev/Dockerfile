@@ -1,4 +1,4 @@
-FROM linuxserver/code-server:4.138.0
+FROM linuxserver/code-server:4.139.1
 
 # Install Ruby and compilation dependencies for Jekyll gems
 RUN apt-get update && apt-get install -y \
