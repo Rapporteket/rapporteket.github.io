@@ -16,7 +16,7 @@ permalink: /release
 
    - Trykk på *Choose a tag* og skriv inn neste versjonsnummer, f.eks. `v1.2.0` (vi bruker [semver](https://semver.org/) for hvordan vi setter versjonsnummer). Versjonsnummeret skal være hakket over forrige versjon, og det skal lages en ny tag (trykk på *Create new tag: v1.2.0 on publish*)
 
-     ![Skjermbilde av github-nettside, lag ny tag](img/create-new-tag.png)
+     ![Skjermbilde av github-nettside, lag ny tag](/img/create-new-tag.png)
 
    - Sjekk at du har valgt riktig gren (f.eks. *Target: main*)
 
