@@ -3,9 +3,7 @@ title: Hjem
 layout: home
 ---
 
-## For utviklere av innhold på Rapporteket generelt
-
-Dette er [informasjon om Rapporteket](https://rapporteket.github.io/rapporteket) vedlikeholdt som en R-pakke.
+Dette er informasjon om Rapporteket vedlikeholdt som en R-pakke.
 Målgruppen er først og fremst for de som utvikler innhold og tjenester på Rapporteket, selv om innholdet også kan være nytting for brukere av Rapporteket.
 Spesifikk informasjon om/for hvert enkelt register på Rapporteket finnes i respektive R-pakker som alle er tilgjengelig på [GitHub](https://github.com/Rapporteket).
 
