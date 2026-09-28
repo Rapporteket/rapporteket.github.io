@@ -29,9 +29,9 @@ Source code management for each registry application is hosted by the [Rapportek
 ## Pipeline for continuous integration and delivery (CI/CD)
 To ensure that changes to applications at Rapporteket can be delivered in a timely and reliable manner specific workflows are adopted. Pipelines for both the base image and registry applications are illustrated below.
 
-![Base container image workflow](base_image.png)
+![Base container image workflow](/img/base_image.png)
 
-![Registry application container image workflow](app_image.png)
+![Registry application container image workflow](/img/app_image.png)
 
 ## CI/CD tools and methods
 Vulnerability test and monitoring of container images are performed by [snyk](https://snyk.io/).
@@ -46,7 +46,7 @@ In summary, deployment of registry applications follow a two step process where 
 In the first step an application image is built from the *main* branch and deployed to a *quality assurance* (QA) environment for functional testing.
 After successful testing the second step can commence where corresponding application code is tagged for release and from which a new image is built and deployed to a *production* environment.
 The overall process is illustrated below and further details are described in the following sections.
-![Suggested deployment process.](deploy.png)
+![Suggested deployment process.](/img/deploy.png)
 
 ### Quality assurance (QA)
 Any changes applied to the main branch of the application code repository will trigger a build pipeline that if successful will push a new application image to the *Dockerhub image registry*. Any new image tagged by the name of the main branch in the Dockerhub image registry will trigger the deploy pipeline where the new image is pulled by the *Harbour image registry* and scanned for vulnerabilities. If this scanning is not successful, _i.e._ that unacceptable security issues are identified, a summary of relevant issues is reported to the development team via Rapporteket standard email inbox. Upon a successful vulnerability scanning the image will be deployed to the QA environment from where it can be tested, _e.g._ by an end user test team. If tests are successful the release process can commence, and if not the QA-loop will have to start all over again. The QA deploy step is fully automatic and will trigger on any changes to the main code branch. 
