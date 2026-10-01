@@ -6,25 +6,17 @@ permalink: /nytt
 ---
 
 Beskrivelsen under er ikke nødvendigvis utfyllende og forutsetter kjennskap til R og bruk av git og GitHub.
-Som en ekstra støtte anbefales [R pacakges](http://r-pkgs.had.co.nz/) av Hadley Wickham og spesielt [beskrivelsen av git og GitHub](http://r-pkgs.had.co.nz/git.html#git-rstudio).
+Som en ekstra støtte anbefales [R packages](http://r-pkgs.had.co.nz/) av Hadley Wickham og spesielt [beskrivelsen av git og GitHub](http://r-pkgs.had.co.nz/git.html#git-rstudio).
 
 ## Lag ditt eget prosjekt basert på templatet
 
 Denne delen kan være relevant om det er ønskelig å benytte templatetet som utgangspunkt for etablering av nye registre på Rapporteket.
 
-1. Hent ned prosjektet [rapRegTemplate](https://github.com/Rapporteket/rapRegTemplate)
-```bash
-git clone https://github.com/Rapporteket/rapRegTemplate.git appnavn
-```
-2. Slett mappen `.git`
-3. Initiér nytt *git repository*
-```bash
-  git init .
-  git add .
-  git commit -m "init commit"
-  ```
-4. Erstatt `rapRegTemplate` med valgfritt pakkenavn i koden og rydd i prosjektet (f.eks. ved bruk av *vscode*). Husk å *commit* underveis.
-5. Bygg, installér og kjør pakken i R/RStudio. Test gjerne at innebygget Shiny-applikasjon fungerer på samme vis som i prosjektet "rapRegTemplate"
+
+1. Gå inn på [rapRegTemplate](https://github.com/Rapporteket/rapRegTemplate).
+2. Trykk på knappen oppe til høyre (*Use this template*) og opprett nytt repository.
+3. Klon ditt nye repository til lokal maskin.
+4. Bygg, installér og kjør pakken i R/RStudio. Test gjerne at innebygget Shiny-applikasjon fungerer på samme vis som i prosjektet "rapRegTemplate"
 
 ## Opprett database for logging og abonnement
 
@@ -105,7 +97,3 @@ CREATE TABLE IF NOT EXISTS `reportLog` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_danish_ci;
 ```
-
-
-
-
