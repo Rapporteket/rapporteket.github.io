@@ -1,7 +1,7 @@
 ---
 layout: page
 title: "For utviklere av Rapporteket"
-nav_order: 6
+nav_order: 4
 permalink: /utvikling
 ---
 

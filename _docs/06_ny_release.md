@@ -1,7 +1,7 @@
 ---
 layout: page
 title: "Hvordan publisere ny versjon av en Rapporteket-applikasjon"
-nav_order: 4
+nav_order: 6
 permalink: /release
 ---
 
