@@ -1,58 +1,71 @@
 ---
 layout: page
-title: "Rapporteket as container application"
+title: "Rapporteket som containerapplikasjon"
 nav_order: 20
 permalink: /docker
 ---
 
-## Short introduction
-Since 2025 [Rapporteket](https://rapporteket.github.io/rapporteket/) has been provided as standalone container applications hosted in a [kubernetes](https://kubernetes.io/) cluster.
-This document proposes methods that aim to provide an agile and robust process from development to deployment throughout the application lifecycle.
-As such, this document is also meant to be a primer for discussions on further improvements and refinements.
+- TOC
+{:toc}
 
-## Container content
-In this set-up, each registry will be represented as a standalone container application at Rapporteket, _i.e._ deployment will be based on registry specific container images.
-However, registries at Rapporteket all share a common set of features such as system environment and underlying software.
-These will all be established as a base container image that all registry container images are built upon.
-Both types of container images are described below. 
+## Kort introduksjon
 
-### Base container image
-This image is built on [Ubuntu LTS](https://releases.ubuntu.com/), common system libraries, [R-release](https://cran.r-project.org/sources.html) and common [R-packages](https://en.wikipedia.org/wiki/R_package).
-Relevant system locale settings are also defined in this image.
-The outset is provided by [rocker/r-verse](https://github.com/rocker-org/rocker-versioned2/blob/master/README.md) that keeps track of whatever applies to Ubuntu LTS and R-release.
-Specifications for building the base image is provided by the [corresponding Dockerfile](https://github.com/Rapporteket/docker/blob/main/base-r/Dockerfile).
+Siden 2025 har Rapporteket blitt levert som frittstående containerapplikasjoner driftet i et [Kubernetes](https://kubernetes.io/)-klyngemiljø.
+Dette dokumentet foreslår metoder som skal bidra til en smidig og robust prosess fra utvikling til produksjonssetting gjennom hele applikasjonens livssyklus.
 
-### Application container image
-Registry R-shiny applications are added on top of the [base image](https://github.com/Rapporteket/docker/base-r).
-Source code management for each registry application is hosted by the [Rapporteket organization at GitHub](https://github.com/Rapporteket/) where the respective Dockerfiles for building these images also resides.
+## Containerinnhold
 
-## Pipeline for continuous integration and delivery (CI/CD)
-To ensure that changes to applications at Rapporteket can be delivered in a timely and reliable manner specific workflows are adopted. Pipelines for both the base image and registry applications are illustrated below.
+I denne løsningen representeres hvert register som en selvstendig containerapplikasjon i Rapporteket, det vil si at utrulling baseres på registerspesifikke containerbilder.
 
-![Base container image workflow](/img/base_image.png)
+Samtidig deler alle registre i Rapporteket et felles sett med funksjoner, som systemmiljø og underliggende programvare. Disse etableres i et grunnleggende containerbilde som alle registerspesifikke containerbilder bygges på. Begge typer containerbilder beskrives nedenfor.
 
-![Registry application container image workflow](/img/app_image.png)
+### Grunnleggende containerbilde
 
-## CI/CD tools and methods
-Vulnerability test and monitoring of container images are performed by [snyk](https://snyk.io/).
-The base container image is monitored by weekly scans to detect emerging threats and changes to underlying code is also scanned as part of all [pull requests](https://www.pagerduty.com/resources/learn/what-is-a-pull-request/) to prevent new vulnerabilities from entering the main project.
-Currently, vulnerabilities with low or medium severity are accepted, high and critical are not.
+Det finnes to grunnleggende image, [base-r](https://github.com/Rapporteket/docker/blob/main/base-r/Dockerfile) og [base-r-alpine-latex](https://github.com/Rapporteket/docker/blob/main/base-r-alpine-latex/Dockerfile). Ett er basert på *Ubuntu Linux* og ett er basert på *Alpine Linux*. Begge disse inneholder felles systembiblioteker, den gjeldende stabile R-versjonen (*R-release*) og et sett med felles R-pakker.
 
-As all code repositories are managed at GitHub, [Github Actions](https://docs.github.com/en/actions) are used to enforce policies and run CI/CD tasks.
-Execution of such tasks are both scheduled and triggered by code update requests.
+Utgangspunktet for Ubuntu-bildet er [rocker/r-ver](https://rocker-project.org/images/versioned/r-ver.html), som følger utviklingen av Ubuntu LTS. Utgangspunktet for Alpine-bildet er [rhub/r-minimal](https://github.com/r-hub/r-minimal). Begge følger utviklingen av R-release. Det vil si at versjonsnummeret til bildet tilsvarer R-versjonen.
 
-## Deployment THIS DOCUMENTATION IS NOT UP TO DATE!
-In summary, deployment of registry applications follow a two step process where development and deploy tasks are interconnected.
-In the first step an application image is built from the *main* branch and deployed to a *quality assurance* (QA) environment for functional testing.
-After successful testing the second step can commence where corresponding application code is tagged for release and from which a new image is built and deployed to a *production* environment.
-The overall process is illustrated below and further details are described in the following sections.
-![Suggested deployment process.](/img/deploy.png)
+### Applikasjonscontainerbilde
 
-### Quality assurance (QA)
-Any changes applied to the main branch of the application code repository will trigger a build pipeline that if successful will push a new application image to the *Dockerhub image registry*. Any new image tagged by the name of the main branch in the Dockerhub image registry will trigger the deploy pipeline where the new image is pulled by the *Harbour image registry* and scanned for vulnerabilities. If this scanning is not successful, _i.e._ that unacceptable security issues are identified, a summary of relevant issues is reported to the development team via Rapporteket standard email inbox. Upon a successful vulnerability scanning the image will be deployed to the QA environment from where it can be tested, _e.g._ by an end user test team. If tests are successful the release process can commence, and if not the QA-loop will have to start all over again. The QA deploy step is fully automatic and will trigger on any changes to the main code branch. 
+Registerenes R Shiny-applikasjoner legges oppå ett av de grunnleggende containerbildene (se over). Kildekoden for hver registerapplikasjon forvaltes i [Rapporteket-organisasjonen på GitHub](https://github.com/Rapporteket), hvor bygging av disse bildene ligger. En typisk `Dockerfile` ser slik ut:
 
-### Production
-Once tests are accepted a new release version of the corresponding code will be made and tagged by use of [semantic versioning](https://semver.org/). A new release will trigger an automated publish pipeline that will push a new image to the *Dockerhub image registry*. This image is tagged according to the version number of the code release and a static "production" tag that will serve the same purpose at the often used _latest_ tag. These images will be pulled by the *Harbour image registry* and scanned for vulnerabilities following the exact same approach as for the QA process. When successful, the application image will be deployed to the production environment. In case a roll-back is needed, any existing image tagged with a semantic version number may be re-tagged with the static "production" tag. For this proof of concept, a roll-back will be part of the CI-process in either the development or deployment workflow. Overall, the production deploy step may therefore apply both automated and manual processes. This approach may well be adjusted to meet not yet known future demands for tighter control and change management.
+```docker
+FROM rapporteket/base-r:main
 
-### Vulnerability scanning
-In the above, the deployment process is described in the case when application code changes and a new version is to be deployed. Since new vulnerabilities may well emerge for an application image that has already been deployed to the QA or production environment security scanning will also be run on a schedule. In this case and if new and unacceptable threats are identified the application image will be left running but the results of the vulnerability scanning will be reported in the same way as describe above. 
+WORKDIR /app/R
+
+RUN --mount=type=secret,id=github_pat,env=GITHUB_PAT \
+    --mount=type=bind,source=.,target=/app/R/pkg \
+    R -e "remotes::install_local(path = './pkg')"
+
+EXPOSE 3838
+
+RUN adduser --uid 1000 --disabled-password rapporteket && \
+    chown -R 1000 /app/R && \
+    chmod -R 755 /app/R
+USER 1000
+
+CMD ["R", "-e", "options(shiny.port = 3838, shiny.host = \"0.0.0.0\"); packageName::run_app()"]
+```
+
+
+## Pipeline for kontinuerlig integrasjon og leveranse (CI/CD)
+
+For å sikre at endringer i applikasjonene i Rapporteket kan leveres på en rask og pålitelig måte, benyttes definerte arbeidsflyter. 
+
+### CI/CD-verktøy og metoder
+
+Siden alle kodearkiver forvaltes på GitHub, benyttes [GitHub Actions](https://docs.github.com/en/actions) til å håndheve retningslinjer og kjøre CI/CD-oppgaver. Disse oppgavene utføres både etter faste tidsplaner og som respons på foreslåtte kodeendringer.
+
+### Utrulling (Deployment)
+
+I første trinn merkes den aktuelle applikasjonskoden med en utgivelsesversjon (*release*) fra `main`-grenen, og et nytt bilde bygges og distribueres til NHN automatisk. 
+Denne applikasjonen legges i et kvalitetssikringsmiljø (QA) for funksjonell testing.
+Etter vellykket testing distribueres bildet til produksjonsmiljøet.
+Prosessen er ytterligere beskrevet i kapitlet [Hvordan publisere ny versjon av en Rapporteket-applikasjon](/release).
+
+### Sårbarhetsskanning
+
+Overvåking av containerbilder utføres med [Trivy](https://trivy.dev/). Grunnbildet overvåkes gjennom ukentlige skanninger for å avdekke nye trusler. Endringer i den underliggende koden skannes også som en del av alle *pull requests* for å hindre at nye sårbarheter introduseres i hovedprosjektet.
+
+For tiden aksepteres sårbarheter med lav, moderat eller høy alvorlighetsgrad, mens sårbarheter med kritisk alvorlighetsgrad ikke aksepteres.
