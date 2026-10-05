@@ -9,8 +9,8 @@ permalink: /logging
 
 Følgende hendelser logges automatisk for alle Rapporteket‑applikasjoner som benytter rapbase versjon 3.7.0 eller nyere, både til logg-databasen og NHNs interne loggsystemer:
 - Oppstart av applikasjon.
-- Når bruker endrer rolle eller enhet i applikasjonen.
-- Når bruker laster ned en databasedump eller en tabell via rapbase‑funksjoner.
+- Når en bruker endrer rolle eller enhet i applikasjonen.
+- Når en bruker laster ned en databasedump eller en tabell via rapbase‑funksjoner.
 - Ved automatisk utsending av e‑poster: hvilken rapport som er sendt og hvilke mottakere som fikk den.
 
 Utviklere av Rapporteket‑applikasjoner legge inn ekstra logging der det er nødvendig.
